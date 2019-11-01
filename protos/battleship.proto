@@ -17,13 +17,13 @@ message CreateGameRequest {
 };
 
 message JoinGameRequest {
-    Player player = 1;
+    string username = 1;
     string gameId = 2;
 };
 
 
 message Player { 
-    string playerId = 1;
+    string username = 1;
     string name = 2;
 }
 
@@ -39,7 +39,7 @@ message GameReference {
 }
 
 message Game {
-    string id = 1;
+    string gameId = 1;
     string name = 2;
     repeated BoardCorrdinate positions = 3;
     repeated Player players = 4;
