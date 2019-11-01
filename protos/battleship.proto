@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package battleship;
+
+message CreateGameRequest {
+    string name = 1;
+    int32 cells = 2;
+};
+
+message ListGameResponse {
+    repeated Game games = 1;
+}
+message ListGameRequest {
+    
+}
+
+message Game {
+    string id = 1;
+    string name = 2;
+    repeated BoardCorrdinate position = 3;
+};
+
+enum State {
+    FOG = 0;
+    MISS = 1;
+    HIT = 2;
+}
+
+message BoardCorrdinate {
+    int32 x = 1;
+    int32 y = 2;
+    State state = 3;
+}
+
+message GameRequest {
+    string id = 1;
+}
+
+service BattleshipService {
+    rpc CreateGame (CreateGameRequest) returns (Game);
+    rpc Subscribe(GameRequest) returns (stream Game);
+    rpc List(ListGameRequest) returns (ListGameResponse);
+  }
